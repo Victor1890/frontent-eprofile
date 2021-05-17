@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner";
-import logo from "../../logo.png";
+import logo from "../../assets/pokebola.svg";
 
 const Sidebar = ({ show, changingPokemon, pokemon }) => {
   const [search, setSearch] = useState("");
@@ -27,17 +27,12 @@ const Sidebar = ({ show, changingPokemon, pokemon }) => {
     >
       <div className='mb-4'>
         <div className='hidden md:flex md:justify-center'>
-          <Link to='/' className='flex justify-center'>
-            <img src={logo} alt='logo' />
+          <Link to='/' className='flex justify-center mt-4'>
+            <img src={logo} alt='logo' width='150' height='150' />
           </Link>
         </div>
-        <p className='text-center'>
-          <a
-            href='https://github.com/mauricius'
-            className='text-sm hover:text-grey-dark text-grey font-semibold'
-          >
-            Visit on GitHub
-          </a>
+        <p className='text-center text-grey-dark uppercase text-sm font-bold py-6'>
+          Pokedex Victor Rosario
         </p>
       </div>
       <div className='p-8 flex-1 overflow-y-scroll scrolling-touch md:scrolling-auto'>

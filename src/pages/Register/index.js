@@ -1,6 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { UseSignUp } from "../../hooks/useAuth";
+
+import Logo from "../../assets/pokebola.svg";
+import Wall from "../../assets/wall2.png";
 
 const Register = () => {
   const [form, setForm] = useState({
@@ -11,6 +14,8 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
+
+  const history = useHistory();
 
   const onGetValue = (name, data) => {
     const { value } = data.target;
@@ -28,9 +33,9 @@ const Register = () => {
     const { password, confirmPassword } = form;
 
     if (password === confirmPassword) {
-      UseSignUp(form).then((res) => {
+      UseSignUp(form).then(() => {
         clearInput();
-        window.location.href = "/signin";
+        history.push("/signin");
       });
     }
   };
@@ -40,8 +45,8 @@ const Register = () => {
       <div className='w-full flex flex-wrap'>
         <div className='w-full md:w-1/2 flex flex-col'>
           <div className='flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12'>
-            <a className='bg-black text-white font-bold text-xl p-4' alt='Logo'>
-              Logo
+            <a className=' text-white font-bold text-xl p-4' alt='Logo'>
+              <img src={Logo} width='60' height='60' alt='Pokedex Logo' />
             </a>
           </div>
 
@@ -57,6 +62,7 @@ const Register = () => {
                   id='nickName'
                   placeholder='JohnSmith023'
                   onChange={(e) => onGetValue("nickName", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -69,6 +75,7 @@ const Register = () => {
                   id='firstName'
                   placeholder='John'
                   onChange={(e) => onGetValue("firstName", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -81,6 +88,7 @@ const Register = () => {
                   id='lastName'
                   placeholder='Smith'
                   onChange={(e) => onGetValue("lastName", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -94,6 +102,7 @@ const Register = () => {
                   id='email'
                   placeholder='your@email.com'
                   onChange={(e) => onGetValue("email", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -107,6 +116,7 @@ const Register = () => {
                   id='password'
                   placeholder='Password'
                   onChange={(e) => onGetValue("password", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -120,6 +130,7 @@ const Register = () => {
                   id='confirm-password'
                   placeholder='Contraseña'
                   onChange={(e) => onGetValue("confirmPassword", e)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -142,7 +153,7 @@ const Register = () => {
         <div className='w-1/2 shadow-2xl'>
           <img
             className='object-cover w-full h-screen hidden md:block'
-            src='https://source.unsplash.com/IXUM4cJynP0'
+            src={Wall}
             alt='Background'
           />
         </div>

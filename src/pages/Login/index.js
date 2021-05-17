@@ -1,8 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { UseSignIn } from "../../hooks/useAuth";
+
+import Logo from "../../assets/pokebola.svg";
+import Wall from "../../assets/wall1.jpg";
+
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
+  const history = useHistory();
 
   const onChangeValue = (name, value) => {
     setForm({ ...form, [name]: value });
@@ -17,9 +22,13 @@ const Login = () => {
   const handlSubmit = (e) => {
     e.preventDefault();
     UseSignIn(form).then((res) => {
+      const id = res.userFound._id;
+
       sessionStorage.setItem("token", res.token);
+
       clearInput();
-      window.location.href = "/";
+
+      history.push(`/profile/${id}`);
     });
   };
 
@@ -28,7 +37,9 @@ const Login = () => {
       <div className='w-full flex flex-wrap'>
         <div className='w-full md:w-1/2 flex flex-col'>
           <div className='flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24'>
-            <a className='bg-black text-white font-bold text-xl p-4'>Logo</a>
+            <a className=' text-white font-bold text-xl p-4'>
+              <img src={Logo} width='60' height='60' alt='Pokedex Logo' />
+            </a>
           </div>
 
           <div className='flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32'>
@@ -43,6 +54,7 @@ const Login = () => {
                   id='email'
                   placeholder='your@email.com'
                   onChange={(e) => onChangeValue("email", e.target.value)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -56,6 +68,7 @@ const Login = () => {
                   id='password'
                   placeholder='Password'
                   onChange={(e) => onChangeValue("password", e.target.value)}
+                  required
                   className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline'
                 />
               </div>
@@ -78,7 +91,7 @@ const Login = () => {
         <div className='w-1/2 shadow-2xl'>
           <img
             className='object-cover w-full h-screen hidden md:block'
-            src='https://source.unsplash.com/IXUM4cJynP0'
+            src={Wall}
           />
         </div>
       </div>
