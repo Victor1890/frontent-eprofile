@@ -45,9 +45,9 @@ const Register = () => {
       <div className='w-full flex flex-wrap'>
         <div className='w-full md:w-1/2 flex flex-col'>
           <div className='flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12'>
-            <a className=' text-white font-bold text-xl p-4' alt='Logo'>
+            <div className=' text-white font-bold text-xl p-4' alt='Logo'>
               <img src={Logo} width='60' height='60' alt='Pokedex Logo' />
-            </a>
+            </div>
           </div>
 
           <div className='flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32'>

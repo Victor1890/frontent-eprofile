@@ -24,7 +24,7 @@ const Profile = ({ match }) => {
       setUser({ email, firstName, lastName, nickName });
     });
     token ?? (window.location.href = "/signin");
-  }, [token]);
+  }, [token, id]);
 
   return (
     <main className='profile-page'>
